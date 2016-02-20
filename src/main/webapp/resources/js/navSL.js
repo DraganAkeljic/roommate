@@ -14,12 +14,6 @@ var validationRules = {
 	gender: {
 		required: true
 	},
-	email_log:  {
-		required: true
-	},
-	password_log: {
-		required: true
-	},
 	day: {
 		required: true
 	},
@@ -67,6 +61,37 @@ app.controller('HomeController', function($scope, $http){
 		if(form.valid()){
 			$http({
 				url: "/room/addUserInfo",
+				responseType:'json',
+			    method: "POST",
+			    data: json,
+			    headers: {
+			        "Content-Type": "application/json"
+			    }
+			})
+			.success(function(data){
+				var a = data;
+			})
+			.error(function(data){
+				var a = data;
+			});
+		}
+	}
+	
+	$scope.login = function(){	
+		var form = $('#login_form');
+		var json = convertFormToJSON(form);
+		
+		$('#login_form').validate({  
+			errorClass: 'customeError',
+			focusInvalid: true,
+			rules: validationRules,	
+		    errorPlacement: function(error, element) { }
+
+		});
+		
+		if(form.valid()){
+			$http({
+				url: "/room/checkUser",
 				responseType:'json',
 			    method: "POST",
 			    data: json,
