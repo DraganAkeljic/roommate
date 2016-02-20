@@ -9,8 +9,12 @@ public class HomeController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
-		
 		return "home";
+	}
+	
+	@RequestMapping(value="/SL", method = RequestMethod.GET)
+	public String SL(){
+		return "SL";
 	}
 	
 }
