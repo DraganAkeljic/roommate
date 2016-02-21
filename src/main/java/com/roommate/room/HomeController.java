@@ -17,4 +17,9 @@ public class HomeController {
 		return "SL";
 	}
 	
+	@RequestMapping(value="/CreateAd", method = RequestMethod.GET)
+	public String WriteProfile(){
+		return "CreateAd";
+	}
+	
 }

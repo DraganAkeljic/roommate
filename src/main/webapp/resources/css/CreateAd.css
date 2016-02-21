@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+
+.svg-ico-orange{
+    width: 18px;
+    height: 18px;
+    fill: #01566C;
+}
+
+.main{
+	margin-top: 120px;
+}
+
+body{
+	background-color: #E4E4E4;
+}
+
+#form-content{
+    background-color: #F6F6F6
+}
+
+.sectionH2{
+    border-bottom: 1px solid #01566C;
+    width: 100%;
+    font-size: 19px;
+    padding-bottom: 5px
+}
