@@ -1,10 +1,25 @@
 	<div class="nav navbar-fixed-top">
 		<a href="/room">Roommate</a>
-		<div class="signLog">
+		<div class="signLog" ng-show="loggedOut">
 			<span ng-click="loginToggle()">Login</span>
 			<span ng-click="signInToggle()">Sign in</span>
 		</div>
+		<div class="dropdown signLog" ng-show="loggedIn">
+		<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+	    	Hi {{name}}
+	    	<span class="caret"></span>
+	  	</button>
+	  	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+	    	<li><a href="/room">Home</a></li>
+	    	<li>Edit Profile</li>
+	    	<li>My ads</li>
+	    	<li role="separator" class="divider"></li>
+	    	<li ng-click="logout()">Log out</li>
+	 	 </ul>
 	</div>
+	</div>
+	
+
 	
 	<div class="signInDiv">
 		<form id="signIn_form" class="col-sm-4 col-sm-offset-4 panel-default">	

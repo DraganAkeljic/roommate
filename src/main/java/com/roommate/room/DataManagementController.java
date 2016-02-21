@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,8 +45,8 @@ public class DataManagementController {
 		return jsonObject.toJSONString();	
 	}
 	
-	@RequestMapping(value="/checkUser", method = RequestMethod.POST, produces = "application/json")
-	public @ResponseBody String checkUser (@RequestBody User user){
+	@RequestMapping(value="/login", method = RequestMethod.POST, produces = "application/json")
+	public @ResponseBody String checkUser (@RequestBody User user, HttpServletRequest request){
 		Database database = new Database(username, pass, dataName, port);
 		Connection connection = null;
 		JSONObject jsonObject = new JSONObject();
@@ -56,6 +59,7 @@ public class DataManagementController {
 					jsonObject.put("lastName", resultSet.getString(4));
 					jsonObject.put("data", "Logged in");
 					jsonObject.put("success", true);
+					request.getSession().setAttribute("loggedIn", true);
 					return jsonObject.toJSONString(); 
 				}
 			}
@@ -67,5 +71,20 @@ public class DataManagementController {
 		jsonObject.put("success", false);
 		return jsonObject.toJSONString(); 
 	}
-
+	
+	@RequestMapping(value="/checkLogin", method = RequestMethod.GET)
+	public @ResponseBody Object checkLogin(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		Object a = session.getAttribute("loggedIn");
+		return a; 
+	}
+	
+	@RequestMapping(value="/logout", method = RequestMethod.GET)
+	public @ResponseBody void logout(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		if(session != null){
+			Object a = session.getAttribute("loggedIn");
+			session.removeAttribute("loggedIn");
+		}
+	}
 }

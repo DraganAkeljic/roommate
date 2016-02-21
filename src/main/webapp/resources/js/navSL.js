@@ -36,6 +36,13 @@ app.config(function ($routeProvider){
 
 app.controller('HomeController', function($scope, $http){
 	
+	$http.get("/room/checkLogin")
+		.success(function(data){
+			$scope.name = sessionStorage.name;
+			$scope.loggedIn = data;
+			$scope.loggedOut = !data;
+		})
+	
 	$scope.signInToggle = function(){
 		$('.signInDiv').slideToggle("fast");
 	}
@@ -45,6 +52,17 @@ app.controller('HomeController', function($scope, $http){
 	}
 	
 	$scope.dob = dobList();
+	
+	$scope.logout = function(){
+		$http.get("/room/logout")
+			.success(function(data){
+				$scope.UserDdl(false, true);
+				sessionStorage.clear();
+			})
+			.error(function(err){
+				var a = err;
+			})
+	}
 	
 	$scope.signup = function(){
 		var form = $('#signIn_form');
@@ -96,7 +114,7 @@ app.controller('HomeController', function($scope, $http){
 		
 		if(form.valid()){
 			$http({
-				url: "/room/checkUser",
+				url: "/room/login",
 				responseType:'json',
 			    method: "POST",
 			    data: json,
@@ -105,6 +123,10 @@ app.controller('HomeController', function($scope, $http){
 			    }
 			})
 			.success(function(data){
+				$scope.name = data.name;
+				sessionStorage.name = data.name;
+				$scope.UserDdl(true, false);
+				sessionStorage.name = data.name;
 				$('#messageLog').append('<div class="message">'+data.data+'</div>');
 				setTimeout(function(){
 					$('.message').remove();
@@ -116,6 +138,11 @@ app.controller('HomeController', function($scope, $http){
 				var a = data;
 			});
 		}
+	}
+	
+	$scope.UserDdl = function(x,y){
+		$scope.loggedIn = x;
+		$scope.loggedOut = y;
 	}
 	
 });
