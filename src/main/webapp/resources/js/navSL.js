@@ -38,9 +38,9 @@ app.controller('HomeController', function($scope, $http){
 	
 	$http.get("/room/checkLogin")
 		.success(function(data){
-			$scope.name = sessionStorage.name;
-			$scope.loggedIn = data;
-			$scope.loggedOut = !data;
+			$scope.name = data.name;
+			$scope.loggedIn = data.loggedIn;
+			$scope.loggedOut = !data.loggedIn;
 		})
 	
 	$scope.signInToggle = function(){
@@ -57,7 +57,6 @@ app.controller('HomeController', function($scope, $http){
 		$http.get("/room/logout")
 			.success(function(data){
 				$scope.UserDdl(false, true);
-				sessionStorage.clear();
 			})
 			.error(function(err){
 				var a = err;
@@ -124,7 +123,6 @@ app.controller('HomeController', function($scope, $http){
 			})
 			.success(function(data){
 				$scope.name = data.name;
-				sessionStorage.name = data.name;
 				$scope.UserDdl(true, false);
 				sessionStorage.name = data.name;
 				$('#messageLog').append('<div class="message">'+data.data+'</div>');

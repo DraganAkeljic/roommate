@@ -60,6 +60,7 @@ public class DataManagementController {
 					jsonObject.put("data", "Logged in");
 					jsonObject.put("success", true);
 					request.getSession().setAttribute("loggedIn", true);
+					request.getSession().setAttribute("name", resultSet.getString(3));
 					return jsonObject.toJSONString(); 
 				}
 			}
@@ -73,18 +74,20 @@ public class DataManagementController {
 	}
 	
 	@RequestMapping(value="/checkLogin", method = RequestMethod.GET)
-	public @ResponseBody Object checkLogin(HttpServletRequest request){
+	public @ResponseBody String checkLogin(HttpServletRequest request){
 		HttpSession session = request.getSession();
-		Object a = session.getAttribute("loggedIn");
-		return a; 
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("name", session.getAttribute("name"));
+		jsonObject.put("loggedIn", session.getAttribute("loggedIn"));
+		return jsonObject.toJSONString(); 
 	}
 	
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public @ResponseBody void logout(HttpServletRequest request){
 		HttpSession session = request.getSession();
 		if(session != null){
-			Object a = session.getAttribute("loggedIn");
 			session.removeAttribute("loggedIn");
+			session.removeAttribute("name");
 		}
 	}
 }
