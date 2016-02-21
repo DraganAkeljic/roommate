@@ -48,3 +48,11 @@
 .customeError{
     border-color: red;
 }
+
+.message{
+    font-size: xx-large;
+    color: #515151;
+    background-color: #ECECEC;
+    border-radius: 15px;
+    text-align: center;
+}

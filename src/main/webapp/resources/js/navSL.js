@@ -69,7 +69,12 @@ app.controller('HomeController', function($scope, $http){
 			    }
 			})
 			.success(function(data){
-				var a = data;
+				$('#messageReg').append('<div class="message">'+data.data+'</div>');
+				setTimeout(function(){
+					$('.message').remove();
+					if(data.success)
+						$scope.signInToggle();
+					},4000);
 			})
 			.error(function(data){
 				var a = data;
@@ -100,7 +105,12 @@ app.controller('HomeController', function($scope, $http){
 			    }
 			})
 			.success(function(data){
-				var a = data;
+				$('#messageLog').append('<div class="message">'+data.data+'</div>');
+				setTimeout(function(){
+					$('.message').remove();
+					if(data.success)
+						$scope.loginToggle();
+					},4000);
 			})
 			.error(function(data){
 				var a = data;

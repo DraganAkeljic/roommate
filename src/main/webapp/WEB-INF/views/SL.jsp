@@ -53,6 +53,7 @@
 			<div class="row">
 				<button class="form-control btn btn-primary input-lg" ng-click="signup()">Sign up</button>
 			</div>
+			<div id="messageReg"></div>
 		</form>
 	</div>
 	
@@ -70,5 +71,6 @@
 			<div class="row">
 				<button class="form-control btn btn-primary input-lg" ng-click="login()">Login</button>
 			</div>
+		<div id="messageLog"></div>
 		</form>
 	</div>
