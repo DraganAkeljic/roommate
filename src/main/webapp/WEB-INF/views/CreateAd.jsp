@@ -159,62 +159,62 @@
 				</div>						
 					<!-- stavi u 3 reda -->
 	
-					<div class="row no-gutter">
-						<div class="form-group">
-							<input type="checkbox" name="essentials" value="1">
-							<div class="btn-group">
-								<label for="essentials" class="btn btn-default">
-									<span class="glyphicon glyphicon-ok"></span>
-									<span>&nbsp;</span>
-								</label>
-								<label for="essentials" class="btn btn-default active">Essentials</label>
-							</div>
+				<div class="row no-gutter">
+					<div class="form-group">
+						<input type="checkbox" name="essentials" id="essentials">
+						<div class="btn-group">
+							<label for="essentials" class="btn btn-default">
+								<span class="glyphicon glyphicon-ok"></span>
+								<span>&nbsp;</span>
+							</label>
+							<label for="essentials" class="btn btn-default active" id="See_ad_essentials">Essentials</label> 
 						</div>
-						
-						<div class="form-group">
-							<input type="checkbox" name="tv" value="1">
-							<div class="btn-group">
-								<label for="tv" class="btn btn-default">
-									<span class="glyphicon glyphicon-ok"></span>
-									<span>&nbsp;</span>
-								</label>
-								<label for="tv" class="btn btn-default active">TV</label>
-							</div>
+					</div>
+					
+					<div class="form-group">
+						<input type="checkbox" name="tv" id="tv" value="1">
+						<div class="btn-group">
+							<label for="tv" class="btn btn-default">
+								<span class="glyphicon glyphicon-ok"></span>
+								<span>&nbsp;</span>
+							</label>
+							<label for="tv" class="btn btn-default active">TV</label>
 						</div>
-						
-						<div class="form-group">
-							<input type="checkbox" name="wifi" value="1">
-							<div class="btn-group">
-								<label for="wifi" class="btn btn-default">
-									<span class="glyphicon glyphicon-ok"></span>
-									<span>&nbsp;</span>
-								</label>
-								<label for="wifi" class="btn btn-default active">Wi-Fi (Internet)</label>
-							</div>
+					</div>
+					
+					<div class="form-group">
+						<input type="checkbox" name="wifi" id="wifi" value="1">
+						<div class="btn-group">
+							<label for="wifi" class="btn btn-default">
+								<span class="glyphicon glyphicon-ok"></span>
+								<span>&nbsp;</span>
+							</label>
+							<label for="wifi" class="btn btn-default active">Wi-Fi (Internet)</label>
 						</div>
-						
-						<div class="form-group">
-							<input type="checkbox" name="desk" value="1">
-							<div class="btn-group">
-								<label for="desk" class="btn btn-default">
-									<span class="glyphicon glyphicon-ok"></span>
-									<span>&nbsp;</span>
-								</label>
-								<label for="desk" class="btn btn-default active">Desk</label>
-							</div>
+					</div>
+					
+					<div class="form-group">
+						<input type="checkbox" name="desk" id="desk" value="1">
+						<div class="btn-group">
+							<label for="desk" class="btn btn-default">
+								<span class="glyphicon glyphicon-ok"></span>
+								<span>&nbsp;</span>
+							</label>
+							<label for="desk" class="btn btn-default active" id="See_ad_desk">Desk</label>
 						</div>
-						
-						<div class="form-group">
-							<input type="checkbox" name="ac" value="1">
-							<div class="btn-group">
-								<label for="ac" class="btn btn-default">
-									<span class="glyphicon glyphicon-ok"></span>
-									<span>&nbsp;</span>
-								</label>
-								<label for="ac" class="btn btn-default active">Air condition (AC)</label>
-							</div>
+					</div>
+					
+					<div class="form-group">
+						<input type="checkbox" name="ac" id="ac" value="1">
+						<div class="btn-group">
+							<label for="ac" class="btn btn-default">
+								<span class="glyphicon glyphicon-ok"></span>
+								<span>&nbsp;</span>
+							</label>
+							<label for="ac" class="btn btn-default active" id="See_ad_AC">Air condition (AC)</label>
 						</div>
-					</div>				
+					</div>
+				</div>				
 			</div>
 		</form>
 		
@@ -236,7 +236,7 @@
 				</div>
 				<div class="dropzone dz-clickable" id="my-awesome-dropzone"><div class="dz-default dz-message"><span>Click or drop files here to upload</span></div></div>
                 	<div class="form-group">
-                    	<button class="text-center btn-custom list-group-item">Save ad</button>
+                    	<button ng-click="saveAd()" class="text-center btn-custom list-group-item">Save ad</button>
                     </div>
 			</div>
 		</div>
