@@ -80,4 +80,32 @@ public class Database {
 		callableStatement.execute();
 		return callableStatement.getResultSet();
 	}
+	
+	public void createAd(Connection connection, AdDetails adDetails, String email)throws SQLException{
+		CallableStatement callableStatement = connection.prepareCall("{CALL createAd(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+		
+		callableStatement.setString(1, email);
+		callableStatement.setInt(2, adDetails.getRent());
+		callableStatement.setString(3, adDetails.getAvailable_from());
+		callableStatement.setString(4, adDetails.getMobile());
+		callableStatement.setString(5, adDetails.getCity());
+		callableStatement.setString(6, adDetails.getHood());
+		callableStatement.setString(7, adDetails.getAddress());
+		callableStatement.setString(8, adDetails.getRoom_type());
+		callableStatement.setString(9, adDetails.getRoom_number());
+		callableStatement.setString(10, adDetails.getPlace_size());
+		callableStatement.setString(11, adDetails.getSet());
+		callableStatement.setString(12, adDetails.getDetails());
+		callableStatement.setShort(13, adDetails.getEssentials());
+		callableStatement.setShort(14, adDetails.getTv());
+		callableStatement.setShort(15, adDetails.getWifi());
+		callableStatement.setShort(16, adDetails.getDesk());
+		callableStatement.setShort(17, adDetails.getAc());
+		if(adDetails.getImg_folder() != null)
+			callableStatement.setString(18, adDetails.getImg_folder());
+		else
+			callableStatement.setString(18, ""); //if the user didn't upload pictures
+		
+		callableStatement.execute();
+	}
 }

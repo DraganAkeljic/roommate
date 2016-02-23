@@ -22,7 +22,7 @@
 		<div id="form-content" class="col-sm-6 col-sm-offset-3 panel panel-default"> 
 		<h1>Create ad</h1>
 
-		<form id="ad_room_form" class="form-horizontal col-sm-offset-1 col-sm-10" novalidate="novalidate">
+		<form id="createAd" class="form-horizontal col-sm-offset-1 col-sm-10" novalidate="novalidate">
 			<div class="section_div">	
 				<div class="section_helper">
 					<h2 class="sectionH2">
@@ -38,7 +38,7 @@
 					
 				<div class="form-group">
 					<label>Rent</label>
-						<input ng-change="rent(myValue)" ng-model="myValue" id="rent" type="text" class="form-control" autofocus="" name="rent" placeholder="Rent (example: 100 euro)">
+						<input ng-change="rent(myValue)" ng-model="myValue" type="text" class="form-control" autofocus="" name="rent" placeholder="Rent (example: 100 euro)">
 				</div>
 				
 				<div class="form-group">
@@ -128,7 +128,7 @@
 			
 					<div class="form-group">
 						<label>Set</label>
-							<select name="set" id="set" class="form-control">
+							<select name="set" class="form-control">
 								<option value="">--- Choose set ---</option>
 								<option>Full</option>
 								<option>Partly</option>
@@ -161,7 +161,7 @@
 	
 				<div class="row no-gutter">
 					<div class="form-group">
-						<input type="checkbox" name="essentials" id="essentials">
+						<input type="checkbox" name="essentials" id="essentials" value="1">
 						<div class="btn-group">
 							<label for="essentials" class="btn btn-default">
 								<span class="glyphicon glyphicon-ok"></span>
@@ -248,6 +248,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
 	<script type="text/javascript" src="/room/resources/js/assets/jquery-ui.min.js"></script>
+	<!-- BOOTSTRAP -->
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<!-- DROPZONE -->
 	<script type="text/javascript" src="/room/resources/js/assets/dropzone.js"></script>
 	<!-- ANGULAR -->

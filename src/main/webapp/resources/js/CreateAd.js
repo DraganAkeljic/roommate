@@ -1,8 +1,11 @@
-var validationRulesAd = {
+var validationRulesCreateAd = {
 	rent: {
 		required: true		
 	},
 	available_from: {
+		required: true
+	},
+	mobile: {
 		required: true
 	},
 	city: {
@@ -11,17 +14,41 @@ var validationRulesAd = {
 	hood: {
 		required: true
 	},
+	address: {
+		required: true
+	},
 	room_type: {
+		required: true
+	},
+	room_number: {
+		required: true
+	},
+	place_size: {
+		required: true		
+	},
+	set: {
 		required: true
 	}
 };
-
+	
 Dropzone.autoDiscover = false;
-$(document).ready(function() {
-	
-	$('#datepicker').datepicker({
-		minDate: "+0d", //just today
-	});
-	
+var myDropzone = new Dropzone("#my-awesome-dropzone", {
+	  autoProcessQueue: false,
+	  url:'/room/uploadImgs',
+	  paramName: "img", // The name that will be used to transfer the file
+	  maxFilesize: 4, // MB
+	  maxFiles: 5,
+	  parallelUploads: 5,
+	  acceptedFiles: "image/jpeg, image/jpg, image/png"
 
 });
+
+myDropzone.on("queuecomplete", function () {
+ // window.location = 'index.html';
+});
+
+$('#datepicker').datepicker({
+	minDate: "+0d", //just today
+});
+	
+
