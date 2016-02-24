@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
 
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
@@ -107,5 +108,14 @@ public class Database {
 			callableStatement.setString(18, ""); //if the user didn't upload pictures
 		
 		callableStatement.execute();
+	}
+	
+	public ResultSet getAdID(Connection connection, String email) throws SQLException{
+		CallableStatement callableStatement = connection.prepareCall("{CALL getAdID(?)}", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+		
+		callableStatement.setString(1, email);
+		callableStatement.execute();
+		
+		return callableStatement.getResultSet();
 	}
 }

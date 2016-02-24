@@ -7,10 +7,13 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -116,33 +119,42 @@ public class DataManagementController {
 	}
 	
 	@RequestMapping(value="/uploadImgs", method = RequestMethod.POST)
-	public void uploadImg(@RequestParam("img") MultipartFile[] files, HttpServletRequest request){ 
+	public ResponseEntity uploadImg(@RequestParam("img") MultipartFile[] files, HttpServletRequest request){ 
 		HttpSession session = request.getSession();
-		String message = "";
+		Database database = new Database(username, pass, dataName, port);
+		Connection connection = null;
+		ResultSet resultSet = null;
+		try{
+			connection = database.connect();
+			resultSet = database.getAdID(connection, (String) session.getAttribute("email"));
+			resultSet.next();
+		}catch(Exception e){
+			System.out.println(e.toString());
+		}
 		for(int i = 0; i < files.length; i++){
 			MultipartFile file = files[i];
 			try{
 				byte[] bytes = file.getBytes();
 				
                 // Creating the directory to store file
-                String rootPath = System.getProperty("catalina.home");
-                File dir = new File(rootPath + File.separator + session.getAttribute("email")); //uploadedImages is the name of the folder created (napravi da se ime foldera kreira po imenu i prezimenu korisnika. pozovi sql
+                String rootPath = System.getProperty("user.dir");
+                File dir = new File(rootPath + File.separator + "AdImages" + File.separator + session.getAttribute("email") + File.separator + resultSet.getString(1)); //users email is the name of the folder created
                 if (!dir.exists())
-                    dir.mkdirs();
+                    dir.mkdirs(); //users first created ad
                 
                 // Create the file on server
                 File serverFile = new File(dir.getAbsolutePath() + File.separator + file.getOriginalFilename()); 
                 BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
-                stream.write(bytes);
+                stream.write(bytes); //write (save) images to the disk
                 stream.close();
-                
-                System.out.println("Server File Location="+ serverFile.getAbsolutePath());
-                AdDetails.setImg_folder(serverFile.getAbsolutePath());
- 
-                message = "You successfully uploaded file";
+
+                AdDetails.setImg_folder(serverFile.getAbsolutePath()); //save the img folder path for saving in into the database
+
 			}catch(Exception e){
-				e.toString();
+				System.out.println(e.toString());
+				new ResponseEntity<Object>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		}
+		return new ResponseEntity<Object>(HttpStatus.OK); //ok status required for the dropzoneJS
 	}
 }

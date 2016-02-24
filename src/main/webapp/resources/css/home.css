@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+a:hover{
+	text-decoration: none!important;
+}
+
 .mainScreen{
     height: 100vh;
     background-image: url(../img/index_image.jpg);
@@ -35,7 +39,7 @@
     color: #676767 !important;
     font-weight: bold !important;
     font-size: 18px !important;
-    border-radius: 15px !important;
+    border-radius: 5px !important;
     margin: 0 .5em;
     display: inline-block;
     cursor: pointer;
