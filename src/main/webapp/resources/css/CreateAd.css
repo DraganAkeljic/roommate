@@ -25,6 +25,18 @@ body{
     padding-bottom: 5px
 }
 
+#datepicker{
+	cursor: pointer;
+}
+
+.center{
+	text-align: center!important;
+}
+
+.paddTop15{
+	padding-top: 15px;
+}
+
 .form-group input[type="checkbox"] {
     display: none;
 }

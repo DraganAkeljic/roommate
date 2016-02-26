@@ -40,11 +40,13 @@ var myDropzone = new Dropzone("#my-awesome-dropzone", {
 	  maxFiles: 5,
 	  parallelUploads: 5,
 	  acceptedFiles: "image/jpeg, image/jpg, image/png"
-
 });
 
 myDropzone.on("queuecomplete", function () {
- // window.location = 'index.html';
+	setTimeout(function(){
+		window.location = '/room';
+	},4000);
+
 });
 
 $('#datepicker').datepicker({

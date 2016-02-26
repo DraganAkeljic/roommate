@@ -26,5 +26,10 @@ public class HomeController {
 	@RequestMapping(value="/CreateAd", method = RequestMethod.GET)
 	public String WriteProfile(){
 		return "CreateAd";
-	}	
+	}
+	
+	@RequestMapping(value="/CheckAd", method = RequestMethod.GET)
+	public String CheckAds(){
+		return "CheckAd";
+	}
 }

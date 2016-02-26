@@ -27,7 +27,7 @@
 				<span class="title animated zoomIn dd8">E</span>
 			</div>
 			<div class="text-center">
-				<span class="btn-plain animated bounceInDown ddbtns" id="Check">Check ads</span>
+				<a href="/room/CheckAd" class="btn-plain animated bounceInDown ddbtns" id="Check">Check ads</a>
 				<a href="/room/CreateAd" class="btn-plain animated bounceInDown ddbtns" id="Create">Create ad</a>
 			</div>			
 		</div>

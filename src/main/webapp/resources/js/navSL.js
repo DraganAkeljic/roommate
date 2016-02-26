@@ -156,6 +156,13 @@ app.controller('CreateAdController', function($scope, $http){
 			$('#rent').removeClass("customeError");
 	}
 	
+	$scope.mobile = function(num){
+		if(num.match(/[a-zA-Z]/)) 
+			$('#mobile').addClass("customeError");
+		else
+			$('#mobile').removeClass("customeError");
+	}
+	
 	$scope.city = function(city){
 		if(city === "Zagreb")
 			$scope.hood = hoodZg;
@@ -178,7 +185,6 @@ app.controller('CreateAdController', function($scope, $http){
 		});
 		
 		if(form.valid()){
-			myDropzone.processQueue();	//uploading images
 			$http({
 				url: "/room/createAd",
 				responseType:'json',
@@ -189,12 +195,7 @@ app.controller('CreateAdController', function($scope, $http){
 			    }
 			})
 			.success(function(data){
-				$('#messageReg').append('<div class="message">'+data.data+'</div>');
-				setTimeout(function(){
-					$('.message').remove();
-					if(data.success)
-						$scope.signInToggle();
-					},4000);
+				myDropzone.processQueue();
 			})
 			.error(function(data){
 				var a = data;
@@ -203,6 +204,16 @@ app.controller('CreateAdController', function($scope, $http){
 	}
 
 });
+
+app.controller('CheckAdController', function($scope, $http){
+	
+	$http.get("/room/CheckAd")
+	.success(function(data){
+		$scope.ads = data;
+	})
+
+});
+
 
 function convertFormToJSON(form){
     var array = jQuery(form).serializeArray();

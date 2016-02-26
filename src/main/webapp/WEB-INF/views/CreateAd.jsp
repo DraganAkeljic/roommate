@@ -1,16 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link rel="stylesheet" media="screen" href="/room/resources/css/CreateAd.css">
 	<link rel="stylesheet" media="screen" href="/room/resources/css/navSL.css">
 	<link rel="stylesheet" media="screen" href="/room/resources/css/assets/jquery-ui.min.css">
 	<link rel="stylesheet" media="screen" href="/room/resources/css/assets/dropzone.css">
 	
-	<title>Write ad (Profile)</title>
+	<title>Create your ad ROOMMATE</title>
 	
 </head>
 <body ng-app="Home">
@@ -38,7 +40,7 @@
 					
 				<div class="form-group">
 					<label>Rent</label>
-						<input ng-change="rent(myValue)" ng-model="myValue" type="text" class="form-control" autofocus="" name="rent" placeholder="Rent (example: 100 euro)">
+						<input ng-change="rent(myValue)" ng-model="myValue" type="text" class="form-control" id="rent" autofocus="" name="rent" placeholder="Rent (example: 100 euro)">
 				</div>
 				
 				<div class="form-group">
@@ -48,7 +50,7 @@
 		                
 		        <div class="form-group">
 					<label>Cellphone number</label>
-					<input type="text" tabindex="1" class="form-control" name="mobile" placeholder="Cellphone number for contact" maxlength="20">
+					<input ng-change="mobile(num)" ng-model="num" type="text" tabindex="1" class="form-control" name="mobile" id="mobile" placeholder="Cellphone number for contact" maxlength="20">
 				</div>
 			</div>
 			
@@ -235,8 +237,8 @@
 					</h2>
 				</div>
 				<div class="dropzone dz-clickable" id="my-awesome-dropzone"><div class="dz-default dz-message"><span>Click or drop files here to upload</span></div></div>
-                	<div class="form-group">
-                    	<button ng-click="saveAd()" class="text-center btn-custom list-group-item">Save ad</button>
+                	<div class="form-group paddTop15">
+                    	<button ng-click="saveAd()" class="center btn-custom list-group-item">Save ad</button>
                     </div>
 			</div>
 		</div>

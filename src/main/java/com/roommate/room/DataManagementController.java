@@ -62,14 +62,14 @@ public class DataManagementController {
 			connection = database.connect();
 			ResultSet resultSet = database.checkUser(connection, user);
 			while(resultSet.next()){
-				if(resultSet.getString(1).equals(user.getEmail()) && resultSet.getString(2).equals(user.getPassword())){
+				if(resultSet.getString(1).equals(user.getEmail()) && resultSet.getString(2).equals(user.getPassword())){ //check if the password and email matches with database
 					jsonObject.put("name", resultSet.getString(3));
 					jsonObject.put("lastName", resultSet.getString(4));
 					jsonObject.put("data", "Logged in");
 					jsonObject.put("success", true);
 					request.getSession().setAttribute("loggedIn", true);
-					request.getSession().setAttribute("name", resultSet.getString(3));
-					request.getSession().setAttribute("email", user.getEmail());
+					request.getSession().setAttribute("name", resultSet.getString(3)); //setting for /checkLogin
+					request.getSession().setAttribute("email", user.getEmail()); //setting email into session (needs when creating ad)
 					return jsonObject.toJSONString(); 
 				}
 			}
@@ -94,11 +94,11 @@ public class DataManagementController {
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public @ResponseBody void logout(HttpServletRequest request){
 		HttpSession session = request.getSession();
-		if(session != null){
+		if(session != null){						//kill session
 			session.removeAttribute("loggedIn");
 			session.removeAttribute("name");
+			session.removeAttribute("email");
 		}
-		System.out.println("logged out!!");
 	}
 	
 	@RequestMapping(value="/createAd", method = RequestMethod.POST, produces = "application/json")
@@ -109,7 +109,7 @@ public class DataManagementController {
 		Connection connection = null;
 		try{
 			connection = database.connect();
-			database.createAd(connection, adDetails, (String) session.getAttribute("email"));
+			database.createAd(connection, adDetails, (String) session.getAttribute("email")); //saves all the data into database
 		}catch(Exception e){
 			System.out.println(e.toString());
 		}
@@ -126,12 +126,12 @@ public class DataManagementController {
 		ResultSet resultSet = null;
 		try{
 			connection = database.connect();
-			resultSet = database.getAdID(connection, (String) session.getAttribute("email"));
+			resultSet = database.getAdID(connection, (String) session.getAttribute("email")); //get the AdID that user just created
 			resultSet.next();
 		}catch(Exception e){
 			System.out.println(e.toString());
 		}
-		for(int i = 0; i < files.length; i++){
+		for(int i = 0; i < files.length; i++){ //for loop if user uploaded more then 1 image
 			MultipartFile file = files[i];
 			try{
 				byte[] bytes = file.getBytes();
@@ -149,7 +149,7 @@ public class DataManagementController {
                 stream.close();
                 try{
                 	connection = database.connect();
-                	database.setImgFolder(connection, Integer.parseInt(resultSet.getString(1)), dir.getAbsolutePath());
+                	database.setImgFolder(connection, Integer.parseInt(resultSet.getString(1)), dir.getAbsolutePath()); //sets the AdID & img_folder path into database
                 }catch(Exception e){
                 	System.out.println(e.toString());
                 }
@@ -159,6 +159,6 @@ public class DataManagementController {
 				new ResponseEntity<Object>(HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		}
-		return new ResponseEntity<Object>(HttpStatus.OK); //ok status required for the dropzoneJS
+		return new ResponseEntity<Object>(HttpStatus.OK); //ok status required for the dropzoneJS (for the check sign)
 	}
 }
