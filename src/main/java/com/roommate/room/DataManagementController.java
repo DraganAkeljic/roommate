@@ -111,7 +111,7 @@ public class DataManagementController {
 			connection = database.connect();
 			database.createAd(connection, adDetails, (String) session.getAttribute("email"));
 		}catch(Exception e){
-			e.toString();
+			System.out.println(e.toString());
 		}
 		jsonObject.put("data", "Success");
 		return jsonObject.toJSONString();
@@ -147,8 +147,12 @@ public class DataManagementController {
                 BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
                 stream.write(bytes); //write (save) images to the disk
                 stream.close();
-
-                AdDetails.setImg_folder(serverFile.getAbsolutePath()); //save the img folder path for saving in into the database
+                try{
+                	connection = database.connect();
+                	database.setImgFolder(connection, Integer.parseInt(resultSet.getString(1)), dir.getAbsolutePath());
+                }catch(Exception e){
+                	System.out.println(e.toString());
+                }
 
 			}catch(Exception e){
 				System.out.println(e.toString());

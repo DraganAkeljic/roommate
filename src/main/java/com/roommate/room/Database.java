@@ -83,7 +83,7 @@ public class Database {
 	}
 	
 	public void createAd(Connection connection, AdDetails adDetails, String email)throws SQLException{
-		CallableStatement callableStatement = connection.prepareCall("{CALL createAd(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+		CallableStatement callableStatement = connection.prepareCall("{CALL createAd(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 		
 		callableStatement.setString(1, email);
 		callableStatement.setInt(2, adDetails.getRent());
@@ -102,10 +102,6 @@ public class Database {
 		callableStatement.setShort(15, adDetails.getWifi());
 		callableStatement.setShort(16, adDetails.getDesk());
 		callableStatement.setShort(17, adDetails.getAc());
-		if(adDetails.getImg_folder() != null)
-			callableStatement.setString(18, adDetails.getImg_folder());
-		else
-			callableStatement.setString(18, ""); //if the user didn't upload pictures
 		
 		callableStatement.execute();
 	}
@@ -117,5 +113,14 @@ public class Database {
 		callableStatement.execute();
 		
 		return callableStatement.getResultSet();
+	}
+	
+	public void setImgFolder(Connection connection, int AdID, String img_folder) throws SQLException{
+		CallableStatement callableStatement = connection.prepareCall("{CALL setImgFolder(?,?)}", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+		
+		callableStatement.setInt(1, AdID);
+		callableStatement.setString(2, img_folder);
+		
+		callableStatement.execute();
 	}
 }

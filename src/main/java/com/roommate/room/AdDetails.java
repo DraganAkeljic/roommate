@@ -2,7 +2,6 @@ package com.roommate.room;
 
 public class AdDetails {
 	String available_from, mobile, city, hood, address, room_type, room_number, place_size, set, details;
-	static String img_folder;
 	short rent, essentials, tv, ac, wifi, desk;
 	public String getAvailable_from() {
 		return available_from;
@@ -63,12 +62,6 @@ public class AdDetails {
 	}
 	public void setDetails(String details) {
 		this.details = details;
-	}
-	public String getImg_folder() {
-		return img_folder;
-	}
-	public static void setImg_folder(String img_folder) {
-		AdDetails.img_folder = img_folder;
 	}
 	public short getRent() {
 		return rent;
