@@ -123,4 +123,11 @@ public class Database {
 		
 		callableStatement.execute();
 	}
+	
+	public ResultSet get6Ads(Connection connection) throws SQLException{
+		CallableStatement callableStatement = connection.prepareCall("{CALL get6Ads()}", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+		
+		callableStatement.execute();
+		return callableStatement.getResultSet();
+	}
 }

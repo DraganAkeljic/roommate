@@ -207,7 +207,7 @@ app.controller('CreateAdController', function($scope, $http){
 
 app.controller('CheckAdController', function($scope, $http){
 	
-	$http.get("/room/CheckAd")
+	$http.get("/room/getAds")
 	.success(function(data){
 		$scope.ads = data;
 	})

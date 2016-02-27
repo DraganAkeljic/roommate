@@ -3,6 +3,8 @@ package com.roommate.room;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -137,8 +139,8 @@ public class DataManagementController {
 				byte[] bytes = file.getBytes();
 				
                 // Creating the directory to store file
-                String rootPath = System.getProperty("user.dir");
-                File dir = new File(rootPath + File.separator + "AdImages" + File.separator + session.getAttribute("email") + File.separator + resultSet.getString(1)); //users email is the name of the folder created
+                String rootPath = "C:\\Users\\ake\\Documents\\workspace-sts-3.7.2.RELEASE\\Roommate\\src\\main\\webapp\\resources\\AdImages";
+                File dir = new File(rootPath + File.separator + session.getAttribute("email") + File.separator + resultSet.getString(1)); //users email is the name of the folder created
                 if (!dir.exists())
                     dir.mkdirs(); //users first created ad
                 
@@ -161,4 +163,39 @@ public class DataManagementController {
 		}
 		return new ResponseEntity<Object>(HttpStatus.OK); //ok status required for the dropzoneJS (for the check sign)
 	}
+	
+	@RequestMapping(value="/getAds", method = RequestMethod.GET)
+	public @ResponseBody String getAds(){
+		JSONObject jsonObject = new JSONObject();
+		ArrayList<Object> list = new ArrayList<Object>();
+		Database database = new Database(username, pass, dataName, port);
+		Connection connection = null;
+		File folder;
+		File[] imgs;
+		try{
+			connection = database.connect();
+			ResultSet resultSet = database.get6Ads(connection);
+			while(resultSet.next()){
+				String img_folder = resultSet.getString(2);
+				img_folder.replace("\\", "\\\\").trim();
+				folder = new File(img_folder);
+				imgs = folder.listFiles();
+				if(imgs[0].isFile()){
+					String[] root = img_folder.split("webapp");
+					jsonObject.put("img", "\\room" + root[1] + "\\" + imgs[0].getName());
+				}
+				jsonObject.put("id", resultSet.getInt(1));
+				jsonObject.put("available", resultSet.getString(3));
+				jsonObject.put("created", resultSet.getString(4));
+				jsonObject.put("rent", resultSet.getInt(5));
+				jsonObject.put("roomType", resultSet.getString(6));
+				jsonObject.put("title", resultSet.getString(7) +"(" + resultSet.getString(8) + ")");
+				list.add(jsonObject.toJSONString());
+			}
+		}catch(Exception e){
+			System.out.println(e.toString());
+		}
+		return list.toString();
+	}
+
 }
