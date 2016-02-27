@@ -3,3 +3,126 @@
 body{
 	background-color: #E4E4E4;
 }
+
+.main{
+	margin-top: 130px;
+}
+div.ads{
+            margin-bottom: 30px;
+}
+
+.ads:before{
+        content: inherit!important;
+        display: initial!important;
+}
+
+.ads:after{
+        content: inherit!important;
+        display: initial!important;
+}
+.img{
+	height: 300px;
+}
+
+img{
+	border-radius: 5px;
+}
+
+ul li{
+	list-style: none;
+}
+
+li a{
+        color:#fff;
+}
+
+li a:hover{
+        color: #fff;
+        text-decoration: none!important;
+}
+
+ul{
+	padding-top: 20px;
+    padding-bottom: 20px;
+    color: #fff;
+    font-size: x-large;
+}
+
+.location{
+	border-bottom: 1px solid rgb(22, 117, 144);
+    width: 60%;
+    padding-bottom: 2%;
+    text-align: center;
+	letter-spacing: 2px;
+}
+
+.short{
+	padding-top: 2%;
+}
+
+figure{
+	margin:0;
+	position:relative;
+	overflow: hidden;
+	height: 300px;
+}
+
+figure img {
+	max-width: 100%;
+	display: block;
+	position: relative;
+	transition: transform 0.4s;
+}
+
+figure:hover figcaption{
+	opacity: 1;
+	transform: translateY(0px);
+	transition: transform 0.4s, opacity 0.5s;
+}
+
+figure:hover img{
+transform: translateY(-50px);
+}
+
+figure:hover .rent{
+	transform: translateY(-50px);
+	transition: transform 0.4s, opacity 0.5s;
+}
+
+.rent{
+	position: absolute;
+    z-index: 1;
+	background-color: rgba(102, 102, 102, 0.62);width: 150px;
+    height: 50px;
+    bottom: 0;
+	transition: transform 0.4s, opacity 0.5s;
+	text-align: center;
+    font-size: xx-large;
+    color: #fff;
+    border-top-right-radius: 5px;
+}
+
+figcaption {
+	position: absolute;
+	padding: 20px;
+	background-image: linear-gradient(90deg, #FFFFFF, rgb(255, 255, 255),rgba(255, 255, 255, 0.55), #666666);
+	top: auto;
+	height: 50px;
+	width: 1000%;
+	bottom: 0;
+	opacity: 0;
+	transform: translateY(100%);
+	transition: transform 0.4s, opacity 0.1s
+}
+
+figcaption a{
+	color: #000;
+    font-size: medium;
+    text-decoration: none!important;
+}
+
+@media (max-width: 1400px){
+        #main{
+                zoom: 75%;
+        }
+}

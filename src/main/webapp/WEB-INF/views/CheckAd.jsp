@@ -16,26 +16,26 @@
 	<div ng-controller="HomeController">
 		<div ng-view></div>
 	</div>
-	
-	<div ng-controller="CheckAdController">
-		<div class="col-sm-12 col-md-6" ng-repeat="ad in ads">
-			<div class="img">
-				<figure>
-					<div class="rent">{{ad.rent}}</div>
-					<img ng-src="{{ad.img}}"/>
-					<figcaption>
-						<a href="{{ad.id}}">Check this ad</a>
-					</figcaption>
-				</figure>
+	<div class="main">
+		<div class="ads container" ng-controller="CheckAdController">
+			<div class="col-sm-12 col-md-6" ng-repeat="ad in ads">
+				<div class="img">
+					<figure>
+						<div class="rent">{{ad.rent}} Euro</div>
+						<img ng-src="{{ad.img}}"/>
+						<figcaption>
+							<a href="{{ad.id}}">Check this ad</a>
+						</figcaption>
+					</figure>
+				</div>
+				<ul class="about">
+					<li class="location"><a href="{{ad.id}}">{{ad.title}}</a></li>
+					<li class="short">Room type: {{ad.roomType}}</li>
+					<li class="short">Available from: {{ad.available}}</li>
+				</ul>
 			</div>
-			<ul class="about">
-				<li class="location"><a href="{{ad.id}}">{{ad.title}}</a></li>
-				<li class="short">{{ad.roomType}}</li>
-				<li class="short">{{ad.available}}</li>
-			</ul>
 		</div>
 	</div>
-	
 	<!-- JQUERY -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<!-- BOOTSTRAP -->
