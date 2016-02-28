@@ -17,7 +17,7 @@
 </head>
 <body ng-app="Home">
 	<div ng-controller="HomeController">
-		<div ng-view></div>
+		<%@ include file="SL.jsp" %> 
 	</div>
 	
 	<div class="main" ng-controller="CreateAdController">
@@ -258,7 +258,8 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 	<script src="https://code.angularjs.org/1.2.28/angular-route.min.js"></script>
 	<!-- CUSTOME JS -->
-	<script type="text/javascript" src="/room/resources/js/CreateAd.js"></script>
 	<script type="text/javascript" src="/room/resources/js/navSL.js"></script>
+	<script type="text/javascript" src="/room/resources/js/CreateAd.js"></script>
+	
 </body>
 </html>

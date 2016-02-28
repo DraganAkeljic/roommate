@@ -12,7 +12,7 @@
 <body ng-app="Home" ng-controller="HomeController">
 	
 	<!-- NAVIGATION SIGNUP LOGIN SECTION -->
-	<div ng-view></div>
+	<%@ include file="SL.jsp" %> 
 	
 	<div class="main">
 		<div class="mainScreen">
