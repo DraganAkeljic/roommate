@@ -244,7 +244,10 @@ public class DataManagementController {
 			img_folder.replace("\\", "\\\\").trim();
 			folder = new File(img_folder);
 			imgs = folder.listFiles();
-
+			if(imgs[0].isFile()){
+				String[] root = img_folder.split("webapp");
+				jsonObject.put("img", "\\room" + root[1] + "\\" + imgs[0].getName());
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
