@@ -14,9 +14,24 @@ app.controller('AdController', function($scope, $http){
 	})
 	.success(function(data){
 		$scope.AdData = data;
+		$scope.setGallery();
+		
 	})
 	.error(function(data){
 		var a = data;
 	});
+	
+	$scope.gallery = function(){
+		$('#gallery').modal('show');
+		$('.item').removeClass("active");
+		$('.item').first().addClass("active");
+	}
+	
+	$scope.setGallery = function(){
+        var windowHeight = window.innerHeight;
+        var imgHeight = windowHeight * 0.75;
+        var marginTop = (windowHeight - imgHeight) / 2 - 10;
+        $('#modal-body').css("margin-top", marginTop + "px");
+	}
 });
 

@@ -24,12 +24,12 @@
 						<div class="rent">{{ad.rent}} Euro</div>
 						<img ng-src="{{ad.img}}"/>
 						<figcaption>
-							<a href="{{ad.id}}">Check this ad</a>
+							<a href="{{ad.url}}">Check this ad</a>
 						</figcaption>
 					</figure>
 				</div>
 				<ul class="about">
-					<li class="location"><a href="{{ad.id}}">{{ad.title}}</a></li>
+					<li class="location"><a href="{{ad.url}}">{{ad.title}}</a></li>
 					<li class="short">Room type: {{ad.roomType}}</li>
 					<li class="short">Available from: {{ad.available}}</li>
 				</ul>

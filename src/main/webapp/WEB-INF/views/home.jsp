@@ -9,10 +9,12 @@
 	
 	<title>Roommate</title>
 </head>
-<body ng-app="Home" ng-controller="HomeController">
+<body ng-app="Home">
 	
 	<!-- NAVIGATION SIGNUP LOGIN SECTION -->
-	<%@ include file="SL.jsp" %> 
+	<div ng-controller="HomeController">
+		<%@ include file="SL.jsp" %> 
+	</div>
 	
 	<div class="main">
 		<div class="mainScreen">
@@ -31,6 +33,30 @@
 				<a href="/room/CreateAd" class="btn-plain animated bounceInDown ddbtns" id="Create">Create ad</a>
 			</div>			
 		</div>
+		
+		<div class="last_ads" ng-controller="GetAdsController">
+			<h2 class="white text-center">Last uploaded ads</h2>
+			<div class="ads_list">
+				<div ng-repeat="ad in Ads" class="col-xs-2">
+					<div class="text-center">
+						<div class="img_div">
+							<a href="{{ ad.url }}">
+								<img ng-src="{{ ad.img }}" class="ad_img"/>
+							</a>
+						</div>
+						<div class="title_div">
+							<a href="{{ ad.url }}"> <span class="ad_title"> {{ ad.title }} </span></a>
+							<div>
+								<span class="ad_roomType">Room type:  {{ ad.roomType }} </span>
+							</div>
+							<div>
+								<span class="ad_date">Uploaded: {{ ad.created }}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	
 
@@ -44,8 +70,8 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 	<script src="https://code.angularjs.org/1.2.28/angular-route.min.js"></script>
 	<!-- CUSTOME JS -->
-	<script src="<c:url value="/resources/js/home.js" />"></script>
 	<script src="<c:url value="/resources/js/navSL.js" />"></script>
+	<script src="<c:url value="/resources/js/home.js" />"></script>
 	
 </body>
 </html>

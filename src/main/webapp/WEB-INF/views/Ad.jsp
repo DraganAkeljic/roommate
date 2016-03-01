@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link rel="stylesheet" media="screen" href="/room/resources/css/navSL.css">
 	<link rel="stylesheet" media="screen" href="/room/resources/css/Ad.css">
+	<link rel="stylesheet" media="screen" href="/room/resources/css/assets/bootstrap-carousel.min.css">
 <title>Ad</title>
 </head>
 <body ng-app="Home">
@@ -19,7 +20,7 @@
 			<div class="modal-dialog">
 				<div class="modal-content" id="modal-content">
 					<div class="modal-body" id="modal-body">
-						<div id="myCarousel" class="carousel slide carousel-fit" data-ride="carousel">
+						<div id="myCarousel" class="carousel slide carousel-fit" >
 							<ol class="carousel-indicators">
 								<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 								<li data-target="#myCarousel" data-slide-to="1"></li>
@@ -28,9 +29,9 @@
 								<li data-target="#myCarousel" data-slide-to="4"></li>
 							</ol> 
 							
-							<div class="carousel-inner" ng-repeat="data in AdData">
-								<div class="item active">
-									<img ng-src="{{data}}"/>
+							<div class="carousel-inner">
+								<div class="item" ng-repeat="img in AdData.imgs">
+									<img class="imgH" ng-src="{{img}}"/>
 								</div>
 							</div>
 							<a class="left carousel-control" href="#myCarousel" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"></span> </a>
@@ -46,10 +47,10 @@
 		
 		<div class="main">
 			<div class="main-img" id="images">
-				<div class="cover_img" style="backgroud-image:url('{{AdData}}')"></div>
+				<img class="cover_img" ng-src="{{AdData.imgs[0]}}" ng-click="gallery()"/>
 			</div>
 			<div class="summary"> <span class="title"> {{AdData.title}} </span> </div>
-			<div class="contact_info">
+			<div class="contact_info_div">
 				<div class="contact">
 					<div class="contact_info"> <span> Contact info </span> </div>
 					<ul>
@@ -59,7 +60,7 @@
 					</ul>
 				</div>
 			</div>
-			<div id="about" class="form-horizontal col-sm-offset-4">
+			<div class="form-horizontal col-sm-offset-4 about">
 				<div class="section_div">
 					<div class="section_helper">
 						<h2 class="sectionH2">

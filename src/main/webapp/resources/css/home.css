@@ -76,3 +76,35 @@ a:hover{
 .ddbtns{
 	animation-delay: 1.5s;
 }
+
+.last_ads{
+	background-image: linear-gradient(rgba(96, 96, 96, 0), rgba(35, 35, 35, 0.83),rgb(23, 23, 23));
+	bottom: 0;
+	position: absolute;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	border-bottom: 1px solid #fff;
+	width: 100%;
+}
+
+.img_div{
+	height: 140px;
+}
+
+.ad_img{
+	width: 60%;
+    cursor: pointer;
+}
+
+.ads_list{
+    color: #fff;
+}
+
+.ad_title{
+    color: #fff!important;
+    font-size: x-large;
+}
+
+.white{
+	color: #fff;
+}

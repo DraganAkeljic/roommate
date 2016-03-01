@@ -184,7 +184,7 @@ public class DataManagementController {
 					String[] root = img_folder.split("webapp");
 					jsonObject.put("img", "\\room" + root[1] + "\\" + imgs[0].getName());
 				}
-				jsonObject.put("id", resultSet.getString(1));
+				jsonObject.put("url", resultSet.getString(1));
 				jsonObject.put("available", resultSet.getString(3));
 				jsonObject.put("created", resultSet.getString(4));
 				jsonObject.put("rent", resultSet.getInt(5));
@@ -244,10 +244,13 @@ public class DataManagementController {
 			img_folder.replace("\\", "\\\\").trim();
 			folder = new File(img_folder);
 			imgs = folder.listFiles();
-			if(imgs[0].isFile()){
-				String[] root = img_folder.split("webapp");
-				jsonObject.put("img", "\\room" + root[1] + "\\" + imgs[0].getName());
+			for(int i = 0; i < imgs.length; i++){
+				if(imgs[i].isFile()){
+					String[] root = img_folder.split("webapp");
+					list.add("\\room" + root[1] + "\\" + imgs[i].getName());
+				}
 			}
+			jsonObject.put("imgs", list);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

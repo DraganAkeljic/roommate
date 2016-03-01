@@ -1,5 +1,15 @@
 @CHARSET "UTF-8";
 
+body.scrolled .nav{
+	opacity: 0.4;
+  transition: opacity .7s; 
+}
+
+body.scrolled .nav:hover {
+  opacity: 1.0;
+  transition: opacity .7s;
+}
+
 .nav{
     background-image: linear-gradient(#61ADC1, rgba(87, 178, 202, 0.87),rgba(57,108,121,0.02));
 	height: 70px;

@@ -25,6 +25,12 @@ var validationRulesSL = {
 	}
 };
 
+window.addEventListener('scroll', function () { 
+	document.body.classList[
+    window.scrollY > 20 ? 'add': 'remove'
+	]('scrolled');
+});
+
 var app = angular.module("Home",[]);
 
 app.controller('HomeController', function($scope, $http){
