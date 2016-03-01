@@ -32,4 +32,9 @@ public class HomeController {
 	public String CheckAds(){
 		return "CheckAd";
 	}
+	
+	@RequestMapping(value="/Ad", method = RequestMethod.GET)
+	public String Ad(){
+		return "Ad";
+	}
 }

@@ -7,9 +7,9 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -184,7 +184,7 @@ public class DataManagementController {
 					String[] root = img_folder.split("webapp");
 					jsonObject.put("img", "\\room" + root[1] + "\\" + imgs[0].getName());
 				}
-				jsonObject.put("id", resultSet.getInt(1));
+				jsonObject.put("id", resultSet.getString(1));
 				jsonObject.put("available", resultSet.getString(3));
 				jsonObject.put("created", resultSet.getString(4));
 				jsonObject.put("rent", resultSet.getInt(5));
@@ -196,6 +196,60 @@ public class DataManagementController {
 			System.out.println(e.toString());
 		}
 		return list.toString();
+	}
+	
+	@RequestMapping(value="/getAd", method = RequestMethod.POST, produces = "text/plain")
+	public @ResponseBody String getAd(@RequestBody String url){
+
+		Database database = new Database(username, pass, dataName, port);
+		Connection connection = null;
+		JSONObject jsonObject = new JSONObject();
+		try{
+			connection = database.connect();
+			url = url.replace("%20", " ");
+			ResultSet resultSet = database.getAd(connection, url);
+			jsonObject = setObj(resultSet);
+			
+		}catch(Exception e){
+			System.out.println(e.toString());
+		}
+		
+		return jsonObject.toJSONString();
+	}
+	
+	private JSONObject setObj(ResultSet r){
+		JSONObject jsonObject = new JSONObject();
+		ArrayList<String> list = new ArrayList<String>();
+		File folder;
+		File[] imgs;
+		
+		try {
+			r.next();
+			String img_folder = r.getString(21);
+			jsonObject.put("name", r.getString(22));
+			jsonObject.put("mobile", r.getString(5));
+			jsonObject.put("email", r.getString(2));
+			jsonObject.put("title", r.getString(6) + " (" + r.getString(7) + ")");	
+			jsonObject.put("details", r.getString(13));
+			jsonObject.put("city", r.getString(6));
+			jsonObject.put("hood", r.getString(7));
+			jsonObject.put("address", r.getString(8));
+			jsonObject.put("roomType", r.getString(9));
+			jsonObject.put("roomNum", r.getInt(10));
+			jsonObject.put("placeSize", r.getString(11));
+			jsonObject.put("rent", r.getInt(3));
+			jsonObject.put("available", r.getString(4));
+			jsonObject.put("created", r.getString(20));
+			
+			img_folder.replace("\\", "\\\\").trim();
+			folder = new File(img_folder);
+			imgs = folder.listFiles();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return jsonObject;
 	}
 
 }

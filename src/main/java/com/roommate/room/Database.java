@@ -83,7 +83,7 @@ public class Database {
 	}
 	
 	public void createAd(Connection connection, AdDetails adDetails, String email)throws SQLException{
-		CallableStatement callableStatement = connection.prepareCall("{CALL createAd(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+		CallableStatement callableStatement = connection.prepareCall("{CALL createAd(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 		
 		callableStatement.setString(1, email);
 		callableStatement.setInt(2, adDetails.getRent());
@@ -102,6 +102,7 @@ public class Database {
 		callableStatement.setShort(15, adDetails.getWifi());
 		callableStatement.setShort(16, adDetails.getDesk());
 		callableStatement.setShort(17, adDetails.getAc());
+		callableStatement.setString(18, adDetails.getUrl());
 		
 		callableStatement.execute();
 	}
@@ -128,6 +129,15 @@ public class Database {
 		CallableStatement callableStatement = connection.prepareCall("{CALL get6Ads()}", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
 		
 		callableStatement.execute();
+		return callableStatement.getResultSet();
+	}
+	
+	public ResultSet getAd(Connection connection, String url) throws SQLException{
+		CallableStatement callableStatement = connection.prepareCall("{CALL getAd(?)}", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+		
+		callableStatement.setString(1, url);
+		callableStatement.execute();
+		
 		return callableStatement.getResultSet();
 	}
 }

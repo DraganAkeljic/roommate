@@ -1,8 +1,15 @@
 package com.roommate.room;
 
+import java.util.Random;
+
 public class AdDetails {
-	String available_from, mobile, city, hood, address, room_type, room_number, place_size, set, details;
+	String available_from, mobile, city, hood, address, room_type, room_number, place_size, set, details, url;
 	short rent, essentials, tv, ac, wifi, desk;
+	
+	public String getUrl(){
+		Random r = new Random();
+		return "Ad?id=" + this.city + "-" + this.hood + "-" + r.nextInt(999999);
+	}
 	public String getAvailable_from() {
 		return available_from;
 	}
