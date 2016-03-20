@@ -50,7 +50,6 @@ ul{
 
 .location{
 	border-bottom: 1px solid rgb(22, 117, 144);
-    width: 60%;
     padding-bottom: 2%;
     text-align: center;
 	letter-spacing: 2px;
@@ -64,13 +63,11 @@ figure{
 	margin:0;
 	position:relative;
 	overflow: hidden;
-	height: 300px;
+	height: inherit;
 }
 
 figure img {
 	max-width: 100%;
-	display: block;
-	position: relative;
 	transition: transform 0.4s;
 }
 
@@ -121,8 +118,16 @@ figcaption a{
     text-decoration: none!important;
 }
 
-@media (max-width: 1400px){
-        #main{
-                zoom: 75%;
-        }
+@media (max-width: 750px){
+	figure{
+		height: initial;
+	}
+	
+	.img{
+		height: inherit;
+	}
+	
+	ul{
+	    font-size: large;
+	}
 }
