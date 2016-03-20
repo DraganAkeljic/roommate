@@ -6,3 +6,6 @@ app.controller('GetAdsController', function($scope, $http){
 	})
 
 });
+
+var windowHeight = window.innerHeight;
+$('.titleDiv').css("padding-top", (windowHeight * 0.15) + "px");

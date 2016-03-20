@@ -28,12 +28,7 @@ a:hover{
     font-weight: bold;
 }
 
-.titleDiv{
-	padding-top: 200px;
-}
-
 .btn-plain{
-    width: 200px;
     border: 2px solid;
     padding: 21px 25px;
     color: #676767 !important;
@@ -94,6 +89,7 @@ a:hover{
 .ad_img{
 	width: 60%;
     cursor: pointer;
+    height: 100%;
 }
 
 .ads_list{
@@ -107,4 +103,43 @@ a:hover{
 
 .white{
 	color: #fff;
+}
+
+.text-center a{
+		float: inherit!important;
+}
+
+.last_ads_div{
+	display: inline-flex;
+	width: 100%;
+}
+
+.last_ads_div span{
+	margin: auto;
+    font-size: 20px;
+    color: #fff;
+}
+
+@media (max-width: 1000px){
+	.title{
+		font-size: 7em;
+	}
+	
+	.last_ads{
+		bottom: inherit;
+	}
+	
+	.last_ads_div{
+	    position: absolute;
+	    margin-top: -200px;
+	    margin-left: auto;
+	    margin-right: auto;
+	    width: 100%;
+	}
+}
+
+@media (max-width: 600px){
+	.title{
+		font-size: 4em;
+	}
 }

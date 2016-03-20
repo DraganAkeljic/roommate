@@ -1,22 +1,34 @@
-	<div class="nav navbar-fixed-top">
-		<a href="/room">Roommate</a>
-		<div class="signLog" ng-show="loggedOut">
-			<span ng-click="loginToggle()">Login</span>
-			<span ng-click="signInToggle()">Sign in</span>
+	<div class="nav navbar-fixed-top" role="navigation">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a href="/room">Roommate</a>
 		</div>
+		
+		<div ng-show="loggedOut">
+			<div  class="signLog navbar-collapse collapse">
+				<span ng-click="loginToggle()">Login</span>
+				<span ng-click="signInToggle()">Sign in</span>
+			</div>
+		</div>
+		
 		<div class="dropdown signLog" ng-show="loggedIn">
-		<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-	    	Hi {{name}}
-	    	<span class="caret"></span>
-	  	</button>
-	  	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-	    	<li><a href="/room">Home</a></li>
-	    	<li>Edit Profile</li>
-	    	<li>My ads</li>
-	    	<li role="separator" class="divider"></li>
-	    	<li ng-click="logout()">Log out</li>
-	 	 </ul>
-	</div>
+			<span class="dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+		    	Hi {{name}}
+		    	<span class="caret"></span>
+		  	</span>
+		  	<ul class="dropdown-menu dropdownOver navbar-collapse" aria-labelledby="dropdownMenu1">
+		    	<li><a href="/room">Home</a></li>
+		    	<li><a href="/editProfile">Edit Profile</a></li>
+		    	<li><a href="/myAds">My ads</a></li>
+		    	<li role="separator" class="divider"></li>
+		    	<li ng-click="logout()"><a href="#">Log out</a></li>
+		 	 </ul>
+		</div>
 	</div>
 	
 

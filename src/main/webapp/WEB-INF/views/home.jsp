@@ -29,15 +29,19 @@
 				<span class="title animated zoomIn dd8">E</span>
 			</div>
 			<div class="text-center">
-				<a href="/room/CheckAd" class="btn-plain animated bounceInDown ddbtns" id="Check">Check ads</a>
-				<a href="/room/CreateAd" class="btn-plain animated bounceInDown ddbtns" id="Create">Create ad</a>
+				<a href="/room/CheckAd" class="btn-plain animated bounceInDown ddbtns col-xs-6 col-md-4 col-lg-2" id="Check">Check ads</a>
+				<a href="/room/CreateAd" class="btn-plain animated bounceInDown ddbtns col-xs-6 col-md-4 col-lg-2" id="Create">Create ad</a>
 			</div>			
 		</div>
 		
 		<div class="last_ads" ng-controller="GetAdsController">
-			<h2 class="white text-center">Last uploaded ads</h2>
+			<div class="last_ads_div">
+				<span class="glyphicon glyphicon-circle-arrow-down"></span> 
+				<h2 class="white text-center">Last uploaded ads</h2> 
+				<span class="glyphicon glyphicon-circle-arrow-down"></span>
+			</div>
 			<div class="ads_list">
-				<div ng-repeat="ad in Ads" class="col-xs-2">
+				<div ng-repeat="ad in Ads" class="col-xs-12 col-sm-6 col-lg-2">
 					<div class="text-center">
 						<div class="img_div">
 							<a href="{{ ad.url }}">
