@@ -60,7 +60,7 @@
 					</ul>
 				</div>
 			</div>
-			<div class="form-horizontal col-sm-offset-4 about">
+			<div class="form-horizontal col-sm-offset-4 col-xs-offset-1 about">
 				<div class="section_div">
 					<div class="section_helper">
 						<h2 class="sectionH2">
