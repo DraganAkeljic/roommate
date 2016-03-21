@@ -32,4 +32,9 @@ public class HomeController {
 	public String Ad(){
 		return "Ad";
 	}
+	
+	@RequestMapping(value="/Account", method = RequestMethod.GET)
+	public String Account(){
+		return "Account";
+	}
 }

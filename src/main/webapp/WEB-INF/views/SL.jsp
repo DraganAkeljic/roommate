@@ -23,8 +23,8 @@
 		  	</span>
 		  	<ul class="dropdown-menu dropdownOver navbar-collapse" aria-labelledby="dropdownMenu1">
 		    	<li><a href="/room">Home</a></li>
-		    	<li><a href="/editProfile">Edit Profile</a></li>
-		    	<li><a href="/myAds">My ads</a></li>
+		    	<li><a href="/room/Account">Account</a></li>
+		    	<li><a href="/room/myAds">My ads</a></li>
 		    	<li role="separator" class="divider"></li>
 		    	<li ng-click="logout()"><a href="#">Log out</a></li>
 		 	 </ul>

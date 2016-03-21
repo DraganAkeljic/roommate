@@ -257,5 +257,44 @@ public class DataManagementController {
 
 		return jsonObject;
 	}
-
+	
+	@RequestMapping(value="/getUserInfo", method = RequestMethod.GET)
+	public @ResponseBody String getUserInfo(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		Database database = new Database(username, pass, dataName, port);
+		Connection connection = null;
+		JSONObject jsonObject = new JSONObject();
+		try{
+			connection = database.connect();
+			ResultSet resultSet = database.getUserInfo(connection, (String) session.getAttribute("email"));
+			resultSet.next();
+			
+			jsonObject.put("name", resultSet.getString(1));
+			jsonObject.put("lastName", resultSet.getString(2));
+			jsonObject.put("email", resultSet.getString(3));
+			jsonObject.put("gender", resultSet.getString(4));
+			jsonObject.put("dob", resultSet.getString(5));
+			jsonObject.put("created", resultSet.getString(6));
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			return e.toString();
+		}
+		return jsonObject.toJSONString();
+	}
+	
+	@RequestMapping(value="/updateProfile", method = RequestMethod.POST)
+	public @ResponseBody String updateProfile(@RequestBody User user, HttpServletRequest request){
+		HttpSession session = request.getSession();
+		Database database = new Database(username, pass, dataName, port);
+		Connection connection = null;
+		try{
+			connection = database.connect();
+			database.updateProfile(connection, user, (String) session.getAttribute("email"));
+		}catch(Exception e){
+			e.printStackTrace();
+			return e.toString();
+		}
+		return "success";
+	}
 }

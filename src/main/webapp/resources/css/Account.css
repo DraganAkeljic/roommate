@@ -1,0 +1,138 @@
+@CHARSET "UTF-8";
+
+body{
+	background-color: #E4E4E4;
+}
+
+.labels{
+	letter-spacing: 1px;
+    width: 30%;
+	padding-bottom: 5px;
+}
+
+#pets, #student_at{
+	display: none;
+}
+
+.hideInput{
+	display: none;
+}
+
+.profileImg{
+
+	margin-top: 20px;
+	background-color: #E4E4E4;
+}
+
+.img{
+	max-height: 100%;
+	max-width: 100%;
+}
+
+ul{
+	border: 1px solid #5C5C5C;
+	padding-left: 0;
+}
+
+ul li{
+	border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+	padding: 14px;
+	list-style: none;
+}
+
+#upload_img{
+	display: none;
+}
+
+.container-fluid{
+	margin-top: 130px;
+}
+
+.Profilebtns{
+	background-color: #E4E4E4;
+    color: #000;
+	border-radius: 0!important;
+	cursor: pointer;
+}
+
+.Profilebtns:hover{
+	background-color: #DADADA!important;
+	border-radius: 0;
+	color: #F7870D!important;
+}
+
+.activeListElem{
+	background-color: #DADADA!important;
+	color: #F7870D!important;
+}
+
+.Profilebtns a{
+	color: #fff;
+}
+
+.list_menu{
+	padding-top: 50px;
+}
+
+label{
+	color: #000;
+	font-size: 20px;
+	font-weight: normal!important;
+	margin-bottom: 0px!important;
+}
+
+.inputDetails{
+	width: 69%;
+}
+
+[type="text"], [type="password"], [type="email"], select, textarea{
+	padding-top: 5px;
+    padding-bottom: 5px;
+	border: 1px solid rgb(160, 160, 160);
+	background-color: #E4E4E4;
+	color: #000;
+}
+
+.upload_img:hover{
+	background-color: #DADADA!important;
+	color: #F7870D!important;
+}
+
+.row{
+	clear: both;
+    float: left;
+    width: 100%;
+    padding: .5em 1em;
+}
+
+.borderBlack{
+	border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.edit{
+	float: right;
+	color: #64B1C5;
+	cursor: pointer;
+}
+
+.w61{
+	width: 61%;
+}
+
+.w20{
+		width: 20%;
+}
+
+@media (max-width: 500px){
+	#ad_profile_form{
+		padding: inherit;
+	}
+	
+	.labels{
+		width: inherit;
+	}
+	
+	.input-sm{
+		width: 100%;
+	}
+}

@@ -140,4 +140,25 @@ public class Database {
 		
 		return callableStatement.getResultSet();
 	}
+	
+	public ResultSet getUserInfo(Connection connection, String email) throws SQLException{
+		CallableStatement callableStatement = connection.prepareCall("{CALL getUserInfo(?)}", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+		
+		callableStatement.setString(1, email);
+		callableStatement.execute();
+		
+		return callableStatement.getResultSet();
+	}
+	
+	public void updateProfile(Connection connection, User user, String email) throws SQLException, ParseException{
+		CallableStatement callableStatement = connection.prepareCall("{CALL updateProfile(?,?,?,?,?)}", ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
+		
+		callableStatement.setString(1, user.getName());
+		callableStatement.setString(2, user.getLastName());
+		callableStatement.setString(3, user.getGender());
+		callableStatement.setString(4, user.getDob());
+		callableStatement.setString(5, email);
+		
+		callableStatement.execute();
+	}
 }
